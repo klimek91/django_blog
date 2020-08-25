@@ -27,6 +27,7 @@ class Post(models.Model):
     objects = models.Manager()              #manager domyslny
     published = PublishedManager()          #manager niestandardowy
     tags = TaggableManager()
+
     class Meta:
         ordering = ('-publish',)
     def __str__(self):
