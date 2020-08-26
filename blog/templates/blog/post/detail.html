@@ -8,11 +8,17 @@
             Opublikowany {{ post.publish }} przez {{ post.author }}
     </p>
     {{ post.body|linebreaks }}
-    <p>
-        <a href="{% url 'blog:post_share' post.id %}">
+    <a href="{% url 'blog:post_share' post.id %}">
             Udostępnij post
         </a>
-    </p>
+    <h2> Podobne posty</h2>
+        {% for similar_post in similar_posts %}
+            <p>
+                <a href="{{ similar_post.get_absolute_url }}"> {{ similar_post.title }}</a>
+            </p>
+        {% empty %}
+            Nie ma podobnych postów
+        {% endfor %}
     {% with comments.count as total_comments %}
         <h2>
             {{ total_comments }} komentarz{{ total_comments|pluralize:"y" }}
