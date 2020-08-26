@@ -18,6 +18,16 @@
 
         <h3>Najnowsze posty</h3>
         {% show_latest_posts 3 %}
+
+        <h3>Najczesciej komentowy post</h3>
+        {% get_most_commented_posts 2 as most_commented_posts %}
+        <ul>
+            {% for most_commented_post in most_commented_posts %}
+            <li>
+                <a href="{{ most_commented_post.get_absolute_url }}">{{ most_commented_post.title }}</a>
+            </li>
+        {% endfor %}
+        </ul>
     </div>
 </body>
 </html>
